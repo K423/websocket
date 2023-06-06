@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div>
+
+    </div>
+</body>
+
+</html>
+
+<script src="./node_modules/socket.io/client-dist/socket.io.js"></script>
+<script>
+
+    var div = document.querySelector('div')
+
+    //建立连接
+    const socket = io('http://localhost:8001');
+    //监听事件 监听服务器的事件
+    socket.on('send', data => {
+        console.log(data)
+        //发送数据给服务器 建立message事件  服务器端监听message事件
+        div.innerHTML = data
+        socket.emit('message', "反馈数据: " + data)
+    })
+</script>
