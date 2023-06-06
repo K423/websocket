@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <input type="text"><button>发送</button>
+    <div></div>
+</body>
+
+</html>
+
+<style scoped>
+    /* div{
+        width: 200px;
+        height: 200px;
+    } */
+</style>
+
+<script>
+    var input = document.querySelector('input')
+    var button = document.querySelector('button')
+    var div = document.querySelector('div')
+
+    var socket  =new WebSocket('ws://localhost:8001')
+
+    //建立连接
+    socket.addEventListener('open', function(){
+        div.innerHTML = '连接成功'
+    })
+
+    button.addEventListener('click', function(){
+        var value = input.value
+        //发送消息(向服务器发送)
+        socket.send(value)
+    })
+
+    //接收消息
+    socket.addEventListener('message', function(e){
+        //服务器返回处理的数据
+        // console.log("接收到" + e.data)
+        var data = JSON.parse(e.data)  //将json字符串转为对象
+        // div.innerHTML = e.data
+        var dv = document.createElement('div')
+        dv.innerHTML = data.msg + '-----' + data.time
+        if(data.type == 0){
+            dv.style.color = 'green'
+        }else if(data.type == 1){
+            dv.style.color = 'red'
+        }else{
+            dv.style.color = 'blue'
+            dv.innerHTML = data.name + ': ' + data.msg + '----' + data.time
+        }
+        div.appendChild(dv)
+    })
+
+    //连接断开
+    socket.addEventListener('close', function(){
+        console.log('bye~~')
+    })
+</script>
