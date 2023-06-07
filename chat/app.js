@@ -132,4 +132,10 @@ io.on("connection", (socket) => {
         //广播给所有用户
         io.emit('receiveMessage', data)
     })
+
+    //监听发送图片的事件
+    socket.on('sendImage', data => {
+        //广播给所有用户
+        io.emit('receiveImage', data)
+    })
 });

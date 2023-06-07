@@ -132,7 +132,7 @@ body {
 }
 
 .my.message .bubble {
-  background-color: #b2e281;
+  background-color: white;
 }
 .message .bubble {
   max-width: 500px;
@@ -188,11 +188,13 @@ body {
   bottom: 0;
   right: 0;
   left: 0;
+  background-color: white;
 }
 
 .box-ft .toolbar {
   height: 30px;
   padding: 5px 20px;
+  background-color: #40260717;
 }
 
 .box-ft .toolbar .face {
@@ -232,6 +234,7 @@ body {
   height: 90px;
   overflow-x: hidden;
   padding: 0px 20px;
+  background-color: white;
 }
 
 .box-ft .content .text {
@@ -241,13 +244,14 @@ body {
   width: 100%;
   height: 84px;
   font-size: 16px;
-  background-color: #eee;
+  background-color: white;
 }
 
 .box-ft .action {
   text-align: right;
   margin-top: 5px;
   padding-right: 20px;
+  background-color: white;
 }
 
 .box-ft .action .desc {
